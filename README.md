@@ -16,18 +16,18 @@ SD surprisingly has everything to run it out of the box).
 ## Stations file
 Before usage, you should also modify **stations.json** file from the repo. It's a simple JSON file which holds all the 
 stations you need to be transcoded. Format is very simple and self-explanatory:
-`{
-	"radio1": {
-		"name": "Record Innocence",
-		"url": "https://radiorecord.hostingradio.ru/ibiza96.aacp",
-		"bitrate": 128
-	},
-    "radio2": {
-		"name": "Record Mix",
-		"url": "https://radiorecord.hostingradio.ru/mix96.aacp",
-		"bitrate": 128
-	}
-}`
+`	{
+		"radio1": {
+			"name": "Record Innocence",
+			"url": "https://radiorecord.hostingradio.ru/ibiza96.aacp",
+			"bitrate": 128
+		},
+    	"radio2": {
+			"name": "Record Mix",
+			"url": "https://radiorecord.hostingradio.ru/mix96.aacp",
+			"bitrate": 128
+		}
+	}`
 According to this example corresponding radios should be added to your **live_streams.sii** ATS/ETS file with following URLs:
 - `http://IP_ADDRESS:PORT/radio1` for "Record Innocence" station 
 - `http://IP_ADDRESS:PORT/radio2` for "Record Mix" station
@@ -42,5 +42,5 @@ You should replace **IP_ADDRESS** with real IP address of your VPS or in case yo
 `$ ./server.py --host 0.0.0.0 --port 48042`
 
 If you want to automatically start the service on system boot - modify the **etsradiotc.service** and add it to systemd autostart:
-`$ sudo cp etsradiotc.service /etc/systemd/system/
-$ sudo systemctl enable --now etsradiotc.service`
+`	$ sudo cp etsradiotc.service /etc/systemd/system/
+	$ sudo systemctl enable --now etsradiotc.service`
