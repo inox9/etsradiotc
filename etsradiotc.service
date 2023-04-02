@@ -3,7 +3,11 @@ Description=ETS2/ATS radio transcoder
 
 [Service]
 Type=simple
-ExecStart=/path/to/server.py --port PORT_NUMBER
+User=deck
+Group=deck
+KillSignal=SIGINT
+WorkingDirectory=/home/deck/etsradiotc
+ExecStart=/home/deck/etsradiotc/server.py --port 48042
 
 [Install]
 WantedBy=multi-user.target
