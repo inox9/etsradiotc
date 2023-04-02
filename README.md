@@ -16,21 +16,24 @@ SD surprisingly has everything to run it out of the box).
 ## Stations file
 Before usage, you should also modify **stations.json** file from the repo. It's a simple JSON file which holds all the 
 stations you need to be transcoded. Format is very simple and self-explanatory:
+
 `	{
 		"radio1": {
 			"name": "Record Innocence",
 			"url": "https://radiorecord.hostingradio.ru/ibiza96.aacp",
 			"bitrate": 128
 		},
-    	"radio2": {
+		"radio2": {
 			"name": "Record Mix",
 			"url": "https://radiorecord.hostingradio.ru/mix96.aacp",
 			"bitrate": 128
 		}
 	}`
+
 According to this example corresponding radios should be added to your **live_streams.sii** ATS/ETS file with following URLs:
 - `http://IP_ADDRESS:PORT/radio1` for "Record Innocence" station 
 - `http://IP_ADDRESS:PORT/radio2` for "Record Mix" station
+
 Output bitrate of MP3 streams will be 128 kbit/s.
 You should replace **IP_ADDRESS** with real IP address of your VPS or in case you run it directly on steam deck with just
 **localhost**. Replace **PORT** with port on which you run server.
