@@ -1,0 +1,9 @@
+[Unit]
+Description=ETS2/ATS radio transcoder
+
+[Service]
+Type=simple
+ExecStart=/path/to/server.py --port PORT_NUMBER
+
+[Install]
+WantedBy=multi-user.target
