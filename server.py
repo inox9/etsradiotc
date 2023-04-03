@@ -6,28 +6,32 @@ import functools
 import subprocess
 import json
 
+DEFAULT_CODEC = 'libmp3lame'
+DEFAULT_BITRATE = 128
+DEFAULT_FORMAT = 'mp3'
+DEFAULT_CONTENT_TYPE = 'audio/mpeg'
+
 
 class RequestHandler(BaseHTTPRequestHandler):
     def __init__(self, stations: Path, ffmpeg: str, *args, **kwargs):
-        self._stations = stations
         self._ffmpeg = ffmpeg
+        with open(stations) as fp:
+            self._stations: dict = json.load(fp)
         super().__init__(*args, **kwargs)
 
     def do_GET(self):
-        with open(self._stations) as fp:
-            stations = json.load(fp)
         path = self.path[1:]
-        if len(path) == 0 or path not in stations:
+        if len(path) == 0 or path not in self._stations:
             self.send_error(404)
             return
 
-        station: dict = stations[path]
-        bitrate = station.get('bitrate', 128)
-        cmd = (self._ffmpeg, '-i', station['url'], '-c:a', station.get('codec', 'libmp3lame'), '-b:a',
-               f'{bitrate}k', '-f', station.get('format', 'mp3'), '-map_metadata', '-1', 'pipe:1')
+        station: dict = self._stations[path]
+        bitrate = station.get('bitrate', DEFAULT_BITRATE)
+        cmd = (self._ffmpeg, '-i', station['url'], '-c:a', station.get('codec', DEFAULT_CODEC), '-b:a', f'{bitrate}k',
+               '-f', station.get('format', DEFAULT_FORMAT), '-map_metadata', '-1', 'pipe:1')
         with subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL) as proc:
             self.send_response(200)
-            self.send_header('content-type', station.get('contentType', 'audio/mpeg'))
+            self.send_header('content-type', station.get('contentType', DEFAULT_CONTENT_TYPE))
             self.send_header('accept-ranges', 'none')
             self.send_header('connection', 'close')
             self.send_header('icy-name', station['name'])
