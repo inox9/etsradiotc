@@ -1,4 +1,6 @@
-## Project info
+## Euro Truck Simulator 2 / American Truck Simulator Live Radio Transcoder
+
+### Project info
 This is simple live radio transcoder server for **Euro Truck Simulator 2 / American Truck Simulator** games.
 
 As you may know internet radio player in these games does not support anything but plain MP3 streams.
@@ -10,11 +12,11 @@ So this is probably the main reason you would use this project for.
 You can run this script on your own VPS or (if you don't have it) even directly on your Steam Deck (SD surprisingly has 
 everything to run it out of the box).
 
-## Requirements
+### Requirements
 - python 3
 - ffmpeg
 
-## Stations file
+### Stations file (stations.json)
 Before usage, you should modify **stations.json** file from the repo. It's a simple JSON file which holds all the 
 stations you need to be transcoded. Format is very simple and self-explanatory:
 
@@ -43,12 +45,13 @@ keep in mind that higher bitrates will result in higher power consumption.
 You should replace **IP_ADDRESS** with real IP address of your VPS or in case you run it directly on SD with just
 **localhost**. Replace **PORT** with port on which you run the server.
 
-## Running the server on SD
+### Running the server on SD
 `$ ./server.py --port 48042`
 
-## Running the server on VPS
+### Running the server on VPS
 `$ ./server.py --host 0.0.0.0 --port 48042`
 
+### Automatic startup on system boot
 If you want to automatically start the service on system boot - modify the **etsradiotc.service** (set the actual path to
 server.py script on your VPS/SD) and add it to systemd autostart:
 
