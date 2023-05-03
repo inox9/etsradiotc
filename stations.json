@@ -3,5 +3,10 @@
 		"name": "Record Innocence",
 		"url": "https://radiorecord.hostingradio.ru/ibiza96.aacp",
 		"bitrate": 128
+	},
+	"rr_armin": {
+		"name": "Record Armin",
+		"url": "https://hls-01-radiorecord.hostingradio.ru/record-armin/96/playlist.m3u8",
+		"bitrate": 128
 	}
 }

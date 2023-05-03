@@ -56,3 +56,6 @@ server.py script on your VPS/SD) and add it to systemd autostart:
 $ sudo cp etsradiotc.service /etc/systemd/system/
 $ sudo systemctl enable --now etsradiotc.service
 ```
+
+## Adding stations to ETS2/ATS
+There is a good guide on adding stations to the game [here](https://steamcommunity.com/sharedfiles/filedetails/?id=1919303033) 
